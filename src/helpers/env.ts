@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-import { cleanEnv, str, port } from 'envalid'
+import { cleanEnv, str, port, num } from 'envalid'
 import { cwd } from 'process'
 import { resolve } from 'path'
 
@@ -15,4 +15,6 @@ export default cleanEnv(process.env, {
   DB_PASSWORD: str(),
   OPENAI_API_KEY: str(),
   OPENAI_BASE_URL: str(),
+  OPENAI_MODEL: str(),
+  MAX_TOKENS: num(),
 })

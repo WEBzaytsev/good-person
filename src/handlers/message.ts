@@ -1,6 +1,7 @@
 import Context from '@/models/Context'
 import openai from '@/helpers/openai'
 import { InlineKeyboard } from 'grammy'
+import env from '@/helpers/env'
 
 const stickerIds = [
   'CAACAgIAAxkBAAEIkNtm6fn1brqTejJWy_NZ7z6epquxgQACwSYAAn7eCEnWVu7o25PceTYE',
@@ -19,6 +20,23 @@ const stickerIds = [
   'CAACAgUAAxkBAAEIkR1m6gTFkdH7LVvkmRnhlllXW_JLygACvgQAAmmq8FcTngXHKa-lRTYE',
   'CAACAgUAAxkBAAEIkSFm6gTJgBDHnpdb-134Q6yAxUr-LQACqQQAAvpwkFQECCweQCiEzDYE',
 ]
+
+function countTokens(text: string): number {
+  // Примерный подсчет токенов. Для более точного подсчета нужно использовать
+  // специализированные библиотеки или API OpenAI для подсчета токенов.
+  const words = text.split(/\s+/)
+  let tokenCount = 0
+  for (const word of words) {
+    if (/[\u0400-\u04FF]/.test(word)) {
+      // Кириллица: считаем каждый символ как токен
+      tokenCount += word.length
+    } else {
+      // Латиница: считаем каждое слово как токен
+      tokenCount += 1
+    }
+  }
+  return tokenCount
+}
 
 export default async function handleMessage(ctx: Context) {
   const messageText = ctx.message?.text
@@ -103,12 +121,15 @@ export default async function handleMessage(ctx: Context) {
     )
 
     try {
+      const promptTokens = countTokens(prompt)
+      const maxResponseTokens = env.MAX_TOKENS - promptTokens
+
       const completion = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: env.OPENAI_MODEL,
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
         n: 1,
-        max_tokens: 300,
+        max_tokens: Math.max(1, Math.min(maxResponseTokens, 300)), // Ограничиваем до 300 токенов или меньше
       })
 
       const response = completion.choices[0].message.content
@@ -168,12 +189,15 @@ export default async function handleMessage(ctx: Context) {
     )
 
     try {
+      const promptTokens = countTokens(prompt)
+      const maxResponseTokens = env.MAX_TOKENS - promptTokens
+
       const completion = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: env.OPENAI_MODEL,
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
         n: 1,
-        max_tokens: 3000,
+        max_tokens: Math.max(1, maxResponseTokens),
       })
 
       const response = completion.choices[0].message.content
