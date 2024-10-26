@@ -1,22 +1,39 @@
-import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript'
 
-@modelOptions({ schemaOptions: { timestamps: true } })
-export class User {
-  @prop({ required: true, index: true, unique: true })
+@Table({ tableName: 'users' })
+export class User extends Model {
+  @Column({
+    type: DataType.BIGINT,
+    primaryKey: true,
+    unique: true,
+  })
   id!: number
-  @prop({ required: true, default: 'en' })
+
+  @Column({
+    type: DataType.STRING,
+    defaultValue: 'en',
+  })
   language!: string
+
+  @CreatedAt
+  createdAt!: Date
+
+  @UpdatedAt
+  updatedAt!: Date
+
+  static async findOrCreateUser(id: number) {
+    const [user] = await User.findOrCreate({
+      where: { id },
+    })
+    return user
+  }
 }
 
-const UserModel = getModelForClass(User)
-
-export function findOrCreateUser(id: number) {
-  return UserModel.findOneAndUpdate(
-    { id },
-    {},
-    {
-      upsert: true,
-      new: true,
-    }
-  )
-}
+export const findOrCreateUser = (id: number) => User.findOrCreateUser(id)

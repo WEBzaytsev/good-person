@@ -48,6 +48,7 @@
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
       }
     ],
-    "import/prefer-default-export": "error"
+    "import/prefer-default-export": "error",
+    "no-console": "warn" // или "off" если хотите полностью разрешить использование console
   }
 }

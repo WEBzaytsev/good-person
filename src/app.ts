@@ -11,13 +11,16 @@ import handleLanguage from '@/handlers/language'
 import i18n from '@/helpers/i18n'
 import languageMenu from '@/menus/language'
 import sendHelp from '@/handlers/help'
-import startMongo from '@/helpers/startMongo'
+import { startDatabase } from '@/helpers/database'
 
 async function runApp() {
+  // eslint-disable-next-line no-console
   console.log('Starting app...')
-  // Mongo
-  await startMongo()
-  console.log('Mongo connected')
+  // Database
+  await startDatabase()
+  // eslint-disable-next-line no-console
+  console.log('Database connected')
+  
   bot
     // Middlewares
     .use(sequentialize())
@@ -35,6 +38,7 @@ async function runApp() {
   // Start bot
   await bot.init()
   run(bot)
+  // eslint-disable-next-line no-console
   console.info(`Bot ${bot.botInfo.username} is up and running`)
 }
 
