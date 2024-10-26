@@ -17,7 +17,7 @@ const stickerIds = [
   'CAACAgUAAxkBAAEIkRlm6gTEAg-n0gt75U-8ReO9hCYzigACEAQAAo9s0Vd_F6R_ImMxgzYE',
   'CAACAgUAAxkBAAEIkRtm6gTE519qqw3oe5rSvL-q_Bzi2wACywgAAhdpkFVpqwPMsxEivzYE',
   'CAACAgUAAxkBAAEIkR1m6gTFkdH7LVvkmRnhlllXW_JLygACvgQAAmmq8FcTngXHKa-lRTYE',
-  'CAACAgUAAxkBAAEIkSFm6gTJgBDHnpdb-134Q6yAxUr-LQACqQQAAvpwkFQECCweQCiEzDYE'
+  'CAACAgUAAxkBAAEIkSFm6gTJgBDHnpdb-134Q6yAxUr-LQACqQQAAvpwkFQECCweQCiEzDYE',
 ]
 
 export default async function handleMessage(ctx: Context) {
@@ -27,30 +27,44 @@ export default async function handleMessage(ctx: Context) {
   const lowerMessageText = messageText.toLowerCase()
 
   // Обработка известных фраз
-  if (lowerMessageText.includes('умничка, ты что, терпила?') || lowerMessageText.includes('@umnichka_chika_bot, ты что, терпила?')) {
+  if (
+    lowerMessageText.includes('умничка, ты что, терпила?') ||
+    lowerMessageText.includes('@umnichka_chika_bot, ты что, терпила?')
+  ) {
     await ctx.replyWithLocalization('terpilaResponse', {
-      reply_to_message_id: ctx.message.message_id
+      reply_to_message_id: ctx.message.message_id,
     })
     return
   }
 
-  if (lowerMessageText.includes('умничка, ты сильная и независимая?') || lowerMessageText.includes('@umnichka_chika_bot, ты сильная и независимая?')) {
+  if (
+    lowerMessageText.includes('умничка, ты сильная и независимая?') ||
+    lowerMessageText.includes('@umnichka_chika_bot, ты сильная и независимая?')
+  ) {
     await ctx.replyWithLocalization('strongIndependentResponse', {
-      reply_to_message_id: ctx.message.message_id
+      reply_to_message_id: ctx.message.message_id,
     })
     return
   }
 
-  if (lowerMessageText.includes('умничка, на какой версии ты работаешь?') || lowerMessageText.includes('@umnichka_chika_bot, на какой версии ты работаешь?')) {
+  if (
+    lowerMessageText.includes('умничка, на какой версии ты работаешь?') ||
+    lowerMessageText.includes(
+      '@umnichka_chika_bot, на какой версии ты работаешь?'
+    )
+  ) {
     await ctx.replyWithLocalization('versionResponse', {
-      reply_to_message_id: ctx.message.message_id
+      reply_to_message_id: ctx.message.message_id,
     })
     return
   }
 
-  if (lowerMessageText.includes('умничка, никита') || lowerMessageText.includes('@umnichka_chika_bot, никита')) {
+  if (
+    lowerMessageText.includes('умничка, никита') ||
+    lowerMessageText.includes('@umnichka_chika_bot, никита')
+  ) {
     await ctx.replyWithLocalization('nikitaResponse', {
-      reply_to_message_id: ctx.message.message_id
+      reply_to_message_id: ctx.message.message_id,
     })
     return
   }
@@ -58,39 +72,54 @@ export default async function handleMessage(ctx: Context) {
   // Обработка сообщений с "стойло"
   if (lowerMessageText.includes('стойло')) {
     const prompt = ctx.i18n.t('stoyloPrompt')
-    
-    const waitingMessage = await ctx.replyWithLocalization('generatingResponse', {
-      reply_to_message_id: ctx.message.message_id
-    })
+
+    const waitingMessage = await ctx.replyWithLocalization(
+      'generatingResponse',
+      {
+        reply_to_message_id: ctx.message.message_id,
+      }
+    )
 
     try {
       const completion = await openai.chat.completions.create({
-        model: "openai/gpt-4o-mini",
-        messages: [{ role: "user", content: prompt }],
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
         n: 1,
         max_tokens: 300,
-        extra_headers: { "X-Title": "My App" },
       })
 
       const response = completion.choices[0].message.content
 
-      await ctx.reply(response, { reply_to_message_id: ctx.message.message_id })
+      if (response) {
+        await ctx.reply(response, {
+          reply_to_message_id: ctx.message.message_id,
+        })
+      } else {
+        await ctx.replyWithLocalization('errorGeneratingResponse')
+      }
 
       // Отправка случайного стикера
-      const randomStickerId = stickerIds[Math.floor(Math.random() * stickerIds.length)]
+      const randomStickerId =
+        stickerIds[Math.floor(Math.random() * stickerIds.length)]
       await ctx.replyWithSticker(randomStickerId)
     } catch (error) {
       console.error('Error generating response:', error)
       await ctx.replyWithLocalization('errorGeneratingResponse')
     } finally {
-      await ctx.api.deleteMessage(ctx.chat.id, waitingMessage.message_id)
+      if (ctx.chat) {
+        await ctx.api.deleteMessage(ctx.chat.id, waitingMessage.message_id)
+      }
     }
     return
   }
 
   // Обработка сообщений с упоминанием бота
-  if (lowerMessageText.includes('@umnichka_chika_bot') || lowerMessageText.includes('умничка подскажи как') || lowerMessageText.includes('умничка')) {
+  if (
+    lowerMessageText.includes('@umnichka_chika_bot') ||
+    lowerMessageText.includes('умничка подскажи как') ||
+    lowerMessageText.includes('умничка')
+  ) {
     let prompt = lowerMessageText
       .replace('@umnichka_chika_bot', '')
       .replace('умничка подскажи как', '')
@@ -99,28 +128,38 @@ export default async function handleMessage(ctx: Context) {
 
     prompt += ctx.i18n.t('promptSuffix')
 
-    const waitingMessage = await ctx.replyWithLocalization('generatingResponse', {
-      reply_to_message_id: ctx.message.message_id
-    })
+    const waitingMessage = await ctx.replyWithLocalization(
+      'generatingResponse',
+      {
+        reply_to_message_id: ctx.message.message_id,
+      }
+    )
 
     try {
       const completion = await openai.chat.completions.create({
-        model: "openai/gpt-4o-mini",
-        messages: [{ role: "user", content: prompt }],
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
         n: 1,
         max_tokens: 3000,
-        extra_headers: { "X-Title": "My App" },
       })
 
       const response = completion.choices[0].message.content
 
-      await ctx.reply(response, { reply_to_message_id: ctx.message.message_id })
+      if (response) {
+        await ctx.reply(response, {
+          reply_to_message_id: ctx.message.message_id,
+        })
+      } else {
+        await ctx.replyWithLocalization('errorGeneratingResponse')
+      }
     } catch (error) {
       console.error('Error generating response:', error)
       await ctx.replyWithLocalization('errorGeneratingResponse')
     } finally {
-      await ctx.api.deleteMessage(ctx.chat.id, waitingMessage.message_id)
+      if (ctx.chat) {
+        await ctx.api.deleteMessage(ctx.chat.id, waitingMessage.message_id)
+      }
     }
   }
 }
