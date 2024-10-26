@@ -201,8 +201,15 @@ export default async function handleMessage(ctx: Context) {
 
       if (response) {
         response = truncateTokens(response, maxResponseTokens)
+
+        // Форматируем код, если он присутствует в ответе
+        response = response.replace(/```([\s\S]*?)```/g, (match, p1) => {
+          return '```\n' + p1.trim() + '\n```'
+        })
+
         await ctx.reply(response, {
           reply_to_message_id: ctx.message.message_id,
+          parse_mode: 'Markdown',
         })
       } else {
         await ctx.replyWithLocalization('errorGeneratingResponse')
