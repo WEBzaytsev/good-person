@@ -13,7 +13,7 @@ const sequelize = new Sequelize({
   logging: false,
 })
 
-async function startMariaDb() {
+export async function startDatabase() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
@@ -26,4 +26,4 @@ async function startMariaDb() {
   }
 }
 
-export default startMariaDb
+export default sequelize

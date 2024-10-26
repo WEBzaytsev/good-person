@@ -11,13 +11,13 @@ import handleLanguage from '@/handlers/language'
 import i18n from '@/helpers/i18n'
 import languageMenu from '@/menus/language'
 import sendHelp from '@/handlers/help'
-import startMariaDb from '@/helpers/startMariaDb'
+import { startDatabase } from '@/helpers/startMariaDb' // Импортируем как startDatabase для консистентности
 
 async function runApp() {
   // eslint-disable-next-line no-console
   console.log('Starting app...')
   // Database
-  await startMariaDb()
+  await startDatabase()
   // eslint-disable-next-line no-console
   console.log('Database connected')
   
