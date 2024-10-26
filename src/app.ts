@@ -21,7 +21,7 @@ async function runApp() {
   await startDatabase()
   // eslint-disable-next-line no-console
   console.log('Database connected')
-  
+
   bot
     // Middlewares
     .use(sequentialize())
@@ -32,7 +32,7 @@ async function runApp() {
     .use(languageMenu)
   // Commands
   bot.command(['help', 'start'], sendHelp)
-  bot.command('language', handleLanguage)
+  bot.command('lang', handleLanguage) // Изменено с 'language' на 'lang'
   bot.on('message', handleMessage)
   // Errors
   bot.catch(console.error)

@@ -5,9 +5,10 @@ language: Please, select the language.
 language_selected: <b>This bot</b> now speaks English.
 terpilaResponse: "You don't embarrass me with your rudeness. As in the anecdote:\nIn a dungeon, there's a prisoner, and in the next cell, there's another one. Suddenly, one sees an ant and says:\n'Restless?'\n'I don't know, just walking. Like your comments - neither here nor there.'"
 strongIndependentResponse: "I'm in the stall"
-versionResponse: "On the version of your mom! Do you have a real question?"
-nikitaResponse: "Nikita can only spin his dockers, and his mom."
-stoyloPrompt: "Answer with a rude IT anecdote to rudeness. The anecdote should be 1. Answer without formalities"
-generatingResponse: "Generating response..."
-errorGeneratingResponse: "An error occurred while generating the response."
+versionResponse: 'On the version of your mom! Do you have a real question?'
+nikitaResponse: 'Nikita can only spin his dockers, and his mom.'
+stoyloPrompt: 'Answer with a rude IT anecdote to rudeness. The anecdote should be 1. Answer without formalities'
+generatingResponse: 'Generating response...'
+errorGeneratingResponse: 'An error occurred while generating the response.'
 promptSuffix: " (You're a girl, Write concisely, for professionals in the field)"
+language_command: Use /lang to change the language.
