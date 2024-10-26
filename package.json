@@ -24,10 +24,10 @@
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.0",
+    "openai": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.5",
-    "sequelize-typescript": "^2.1.0",
-    "openai": "^4.0.0"
+    "sequelize-typescript": "^2.1.0"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
