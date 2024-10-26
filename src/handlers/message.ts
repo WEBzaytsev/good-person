@@ -29,7 +29,11 @@ export default async function handleMessage(ctx: Context) {
   // Обработка известных фраз
   if (
     lowerMessageText.includes('умничка, ты что, терпила?') ||
-    lowerMessageText.includes('@umnichka_chika_bot, ты что, терпила?')
+    lowerMessageText.includes('@umnichka_chika_bot, ты что, терпила?') ||
+    lowerMessageText.includes('good girl, what are you, a patient?') ||
+    lowerMessageText.includes('clever girl, what are you, a patient?') ||
+    lowerMessageText.includes('umnichka, what are you, a patient?') ||
+    lowerMessageText.includes('@umnichka_chika_bot, are you being patient?')
   ) {
     await ctx.replyWithLocalization('terpilaResponse', {
       reply_to_message_id: ctx.message.message_id,
@@ -39,7 +43,12 @@ export default async function handleMessage(ctx: Context) {
 
   if (
     lowerMessageText.includes('умничка, ты сильная и независимая?') ||
-    lowerMessageText.includes('@umnichka_chika_bot, ты сильная и независимая?')
+    lowerMessageText.includes(
+      '@umnichka_chika_bot, ты сильная и независимая?'
+    ) ||
+    lowerMessageText.includes('good girl, are you strong and independent?') ||
+    lowerMessageText.includes('clever girl, are you strong and independent?') ||
+    lowerMessageText.includes('umnichka, are you strong and independent?')
   ) {
     await ctx.replyWithLocalization('strongIndependentResponse', {
       reply_to_message_id: ctx.message.message_id,
@@ -51,6 +60,12 @@ export default async function handleMessage(ctx: Context) {
     lowerMessageText.includes('умничка, на какой версии ты работаешь?') ||
     lowerMessageText.includes(
       '@umnichka_chika_bot, на какой версии ты работаешь?'
+    ) ||
+    lowerMessageText.includes('good girl, what version are you running?') ||
+    lowerMessageText.includes('clever girl, what version are you running?') ||
+    lowerMessageText.includes('umnichka, what version are you running?') ||
+    lowerMessageText.includes(
+      '@umnichka_chika_bot, what version are you running?'
     )
   ) {
     await ctx.replyWithLocalization('versionResponse', {
@@ -61,7 +76,11 @@ export default async function handleMessage(ctx: Context) {
 
   if (
     lowerMessageText.includes('умничка, никита') ||
-    lowerMessageText.includes('@umnichka_chika_bot, никита')
+    lowerMessageText.includes('@umnichka_chika_bot, никита') ||
+    lowerMessageText.includes('good girl, nikita') ||
+    lowerMessageText.includes('clever girl, nikita') ||
+    lowerMessageText.includes('umnichka, nikita') ||
+    lowerMessageText.includes('@umnichka_chika_bot, nikita')
   ) {
     await ctx.replyWithLocalization('nikitaResponse', {
       reply_to_message_id: ctx.message.message_id,
@@ -69,8 +88,11 @@ export default async function handleMessage(ctx: Context) {
     return
   }
 
-  // Обработка сообщений с "стойло"
-  if (lowerMessageText.includes('стойло')) {
+  // Обработка сообщений с "стойло" или "stall"
+  if (
+    lowerMessageText.includes('стойло') ||
+    lowerMessageText.includes('stall')
+  ) {
     const prompt = ctx.i18n.t('stoyloPrompt')
 
     const waitingMessage = await ctx.replyWithLocalization(
@@ -118,12 +140,22 @@ export default async function handleMessage(ctx: Context) {
   if (
     lowerMessageText.includes('@umnichka_chika_bot') ||
     lowerMessageText.includes('умничка подскажи как') ||
-    lowerMessageText.includes('умничка')
+    lowerMessageText.includes('умничка') ||
+    lowerMessageText.includes('good girl') ||
+    lowerMessageText.includes('clever girl') ||
+    lowerMessageText.includes('umnichka') ||
+    lowerMessageText.includes('good girl. tell me how') ||
+    lowerMessageText.includes('clever girl. tell me how') ||
+    lowerMessageText.includes('umnichka. tell me how')
   ) {
     let prompt = lowerMessageText
       .replace('@umnichka_chika_bot', '')
       .replace('умничка подскажи как', '')
       .replace('умничка', '')
+      .replace('good girl', '')
+      .replace('clever girl', '')
+      .replace('umnichka', '')
+      .replace('tell me how', '')
       .trim()
 
     prompt += ctx.i18n.t('promptSuffix')
