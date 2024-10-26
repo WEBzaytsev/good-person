@@ -27,7 +27,8 @@
     "openai": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.5",
-    "sequelize-typescript": "^2.1.0"
+    "sequelize-typescript": "^2.1.0",
+    "gpt-3-encoder": "^1.1.4"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
