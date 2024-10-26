@@ -10,20 +10,20 @@ const sequelize = new Sequelize({
   username: env.DB_USER,
   password: env.DB_PASSWORD,
   models: [User],
-  logging: false, // Отключаем логирование SQL-запросов
+  logging: false,
 })
 
-export async function startDatabase() {
+async function startMariaDb() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
     // eslint-disable-next-line no-console
-    console.log('Database connected successfully')
+    console.log('MariaDB connected successfully')
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('Unable to connect to the database:', error)
+    console.error('Unable to connect to MariaDB:', error)
     throw error
   }
 }
 
-export default sequelize
+export default startMariaDb
