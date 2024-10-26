@@ -13,4 +13,6 @@ export default cleanEnv(process.env, {
   DB_NAME: str(),
   DB_USER: str(),
   DB_PASSWORD: str(),
+  OPENAI_API_KEY: str(),
+  OPENAI_BASE_URL: str(),
 })
