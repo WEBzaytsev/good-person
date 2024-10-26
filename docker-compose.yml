@@ -1,0 +1,23 @@
+services:
+  umnichka:
+    build: .
+    container_name: umnichka # change to your container name
+    env_file: .env
+    restart: always
+    depends_on:
+      - db
+
+  umnichka_db:
+    image: linuxserver/mariadb:10.11.8
+    container_name: umnichka_db # change to your container name
+    restart: always
+    env_file: .env
+    volumes:
+      - ./db/config:/config
+      - ./db/data:/var/lib/mysql
+      - ./db/logs:/var/log/mysql
+
+networks:
+  default:
+    name: caddy #change to your network or you can remove the network configuration block altogether
+    external: true

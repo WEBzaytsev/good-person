@@ -1,24 +1,32 @@
-# Telegram bot starter based on [grammY](https://grammy.dev)
+# Умничка Чика - многоязычный Telegram бот с интеграцией OpenAI.
 
-Please, enjoy this starter template for Telegram bots based on [grammY](https://grammy.dev). It includes most common middlewares, MongoDB integration, language picker and internationalization and shows basic encapsulation techniques used by me.
+### На основе [grammY](https://grammy.dev) и стартере бота [Telegram bot starter](https://github.com/WEBzaytsev/telegram-bot-starter 'Telegram bot starter')
 
-# Installation and local launch
+# Установка и локальный запуск
 
-1. Clone this repo: `git clone https://github.com/Borodutch/telegram-bot-starter`
-2. Launch the [mongo database](https://www.mongodb.com/) locally
-3. Create `.env` with the environment variables listed below
-4. Run `yarn` in the root folder
-5. Run `yarn develop`
+1. Клонируйте это репо: `git clone https://github.com/WEBzaytsev/good-person`.
+2. Запустите [базу данных mariadb (mysql)](https://mariadb.com) локально, например с помощью docker - [linuxserver/mariadb](https://hub.docker.com/r/linuxserver/mariadb 'linuxserver/mariadb').
+3. Создайте `.env` с переменными окружения, перечисленными ниже
+4. Запустите `yarn` в корневой папке
+5. Запустите `yarn develop`.
 
-And you should be good to go! Feel free to fork and submit pull requests. Thanks!
+И вы можете приступать к работе! Не стесняйтесь делать форки и отправлять запросы на исправление. Спасибо!
 
-# Environment variables
+# Переменные окружения
 
-- `TOKEN` — Telegram bot token
-- `MONGO` — URL of the mongo database
+- `TOKEN` - токен бота Telegram
+- `DB_HOST` - URL базы данных mariadb, поддерживает нейминг docker compose, например umnichka_db
+- `DB_PORT` - Порт базы данных mariadb
+- `DB_NAME` - Имя базы данных mariadb
+- `DB_USER` - Имя пользователя базы данных mariadb
+- `DB_PASSWORD` - Пароль пользователя базы данных mariadb
+- `OPENAI_API_KEY` - API ключ OpenAI
+- `OPENAI_BASE_URL` - Базовый URL OpenAI
+- `OPENAI_MODEL` - Модель OpenAI
+- `MAX_TOKENS` - Максимальное количество токенов
 
-Also, please, consider looking at `.env.sample`.
+Также, пожалуйста, ознакомьтесь с `.env.sample`.
 
-# License
+# Лицензия
 
-MIT — use for any purpose. Would be great if you could leave a note about the original developers. Thanks!
+MIT — используйте для любой цели. Будет здорово, если вы сможете оставить ссылку на оригинальных разработчиков. Спасибо!
