@@ -19,6 +19,7 @@
     "@grammyjs/runner": "^1.0.3",
     "dotenv": "^10.0.0",
     "envalid": "^7.2.2",
+    "gpt-3-encoder": "^1.1.4",
     "grammy": "^1.5.0",
     "grammy-middlewares": "^1.0.11",
     "js-yaml": "^4.1.0",
@@ -27,8 +28,7 @@
     "openai": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.5",
-    "sequelize-typescript": "^2.1.0",
-    "gpt-3-encoder": "^1.1.4"
+    "sequelize-typescript": "^2.1.0"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
@@ -56,5 +56,5 @@
   "_moduleAliases": {
     "@": "dist"
   },
-  "packageManager": "yarn@3.1.0"
+  "packageManager": "yarn@1.22.22"
 }

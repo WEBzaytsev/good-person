@@ -17,9 +17,9 @@ __metadata:
   linkType: hard
 
 "@eslint-community/regexpp@npm:^4.4.0, @eslint-community/regexpp@npm:^4.6.1":
-  version: 4.11.2
-  resolution: "@eslint-community/regexpp@npm:4.11.2"
-  checksum: a3e4e0269f89e214665c15febecbeafd72969f24d4578d2bd694d0a5e4e4209b43095b339c29664412fb18af5e98749867d579d61caef61f273f3694642295f0
+  version: 4.12.0
+  resolution: "@eslint-community/regexpp@npm:4.12.0"
+  checksum: 640bf6575cdcf6cffc246cede4ebfc4045ca7ee1d1c9eaeaf302f63ade05d2a20c58908d8d335c9409824cad77773d1282141af7e8e2aa7ce137d77a038254a0
   languageName: node
   linkType: hard
 
@@ -428,11 +428,11 @@ __metadata:
   linkType: hard
 
 "acorn@npm:^8.9.0":
-  version: 8.13.0
-  resolution: "acorn@npm:8.13.0"
+  version: 8.14.0
+  resolution: "acorn@npm:8.14.0"
   bin:
     acorn: bin/acorn
-  checksum: f1541f05eb5d6ff67990d1927290809b1ebb663ac96d9c7057c935cf29c5bcaba6d39f37bd007f4bb814f162f142b0f2b2dd4b14128b8fcfaf9f0508a6f05f1c
+  checksum: 8755074ba55fff94e84e81c72f1013c2d9c78e973c31231c8ae505a5f966859baf654bddd75046bffd73ce816b149298977fff5077a3033dedba0ae2aad152d4
   languageName: node
   linkType: hard
 
@@ -2808,49 +2808,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"telegram-bot-starter@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "telegram-bot-starter@workspace:."
-  dependencies:
-    "@grammyjs/i18n": ^0.5.0
-    "@grammyjs/menu": ^1.0.4
-    "@grammyjs/runner": ^1.0.3
-    "@types/dotenv": ^8.2.0
-    "@types/js-yaml": ^4.0.5
-    "@types/lodash": ^4.14.195
-    "@types/node": ^16.11.12
-    "@types/sequelize": ^4.28.10
-    "@types/source-map-support": ^0.5.4
-    "@types/validator": ^13.7.0
-    "@typescript-eslint/eslint-plugin": ^5.6.0
-    "@typescript-eslint/parser": ^5.6.0
-    dotenv: ^10.0.0
-    envalid: ^7.2.2
-    eslint: ^8.4.1
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-import: ^2.25.3
-    eslint-plugin-no-relative-import-paths: ^1.0.8
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-prettier: ^4.0.0
-    eslint-plugin-sort-imports-es6-autofix: ^0.6.0
-    gpt-3-encoder: ^1.1.4
-    grammy: ^1.5.0
-    grammy-middlewares: ^1.0.11
-    js-yaml: ^4.1.0
-    lodash: ^4.17.21
-    module-alias: ^2.2.2
-    mysql2: ^2.3.0
-    openai: ^4.0.0
-    prettier: ^2.5.1
-    reflect-metadata: ^0.1.13
-    sequelize: ^6.6.5
-    sequelize-typescript: ^2.1.0
-    source-map-support: ^0.5.21
-    tsc-watch: ^4.5.0
-    typescript: ^4.9.5
-  languageName: unknown
-  linkType: soft
-
 "text-table@npm:^0.2.0":
   version: 0.2.0
   resolution: "text-table@npm:0.2.0"
@@ -3029,6 +2986,49 @@ __metadata:
   checksum: 2eee5c37cad4390385db5db5a8e81470e42e8f1401b0358d7390095d6f681b410f2c4a0c496c6ff9ebd775423c7785cdace7bcdad76c7bee283df3d9718c0f20
   languageName: node
   linkType: hard
+
+"umnichka-chika-bot@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "umnichka-chika-bot@workspace:."
+  dependencies:
+    "@grammyjs/i18n": ^0.5.0
+    "@grammyjs/menu": ^1.0.4
+    "@grammyjs/runner": ^1.0.3
+    "@types/dotenv": ^8.2.0
+    "@types/js-yaml": ^4.0.5
+    "@types/lodash": ^4.14.195
+    "@types/node": ^16.11.12
+    "@types/sequelize": ^4.28.10
+    "@types/source-map-support": ^0.5.4
+    "@types/validator": ^13.7.0
+    "@typescript-eslint/eslint-plugin": ^5.6.0
+    "@typescript-eslint/parser": ^5.6.0
+    dotenv: ^10.0.0
+    envalid: ^7.2.2
+    eslint: ^8.4.1
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-import: ^2.25.3
+    eslint-plugin-no-relative-import-paths: ^1.0.8
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-sort-imports-es6-autofix: ^0.6.0
+    gpt-3-encoder: ^1.1.4
+    grammy: ^1.5.0
+    grammy-middlewares: ^1.0.11
+    js-yaml: ^4.1.0
+    lodash: ^4.17.21
+    module-alias: ^2.2.2
+    mysql2: ^2.3.0
+    openai: ^4.0.0
+    prettier: ^2.5.1
+    reflect-metadata: ^0.1.13
+    sequelize: ^6.6.5
+    sequelize-typescript: ^2.1.0
+    source-map-support: ^0.5.21
+    tsc-watch: ^4.5.0
+    typescript: ^4.9.5
+  languageName: unknown
+  linkType: soft
 
 "unbox-primitive@npm:^1.0.2":
   version: 1.0.2
