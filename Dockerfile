@@ -4,6 +4,12 @@ FROM node:20-alpine
 # Устанавливаем рабочую директорию в контейнере
 WORKDIR /app
 
+# Устанавливаем Corepack и активируем его
+RUN corepack enable
+
+# Выводим версию Yarn
+RUN yarn --version
+
 # Копируем package.json и yarn.lock
 COPY package.json yarn.lock ./
 
